@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #1a1a2e;
+    color: #eee;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #888;
+    font-weight: 400;
+}
+
+.problem {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+}
+
+.problem .operator {
+    color: #888;
+    margin: 0 0.5rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+input[type="text"] {
+    font-size: 1.2rem;
+    padding: 0.75rem 1rem;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background: #16213e;
+    color: #eee;
+    width: 200px;
+    text-align: center;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #4a9eff;
+}
+
+button {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background: #4a9eff;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #3a8eef;
+}
+
+button:disabled {
+    background: #333;
+    cursor: not-allowed;
+}
+
+.result {
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.result.correct {
+    background: #1e4620;
+}
+
+.result.close {
+    background: #4a4520;
+}
+
+.result.wrong {
+    background: #4a2020;
+}
+
+.result .label {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+}
+
+.result .value {
+    font-size: 1.4rem;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.stats .stat-value {
+    font-size: 1.2rem;
+    color: #eee;
+}
+
+.next-btn {
+    margin-top: 1.5rem;
+}
