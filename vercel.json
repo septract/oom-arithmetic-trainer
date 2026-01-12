@@ -1,5 +1,8 @@
 {
-  "buildCommand": null,
-  "outputDirectory": ".",
-  "installCommand": null
+  "buildCommand": "echo 'Using prebuilt'",
+  "outputDirectory": "dist",
+  "installCommand": "echo 'Skipping install'",
+  "github": {
+    "enabled": false
+  }
 }
