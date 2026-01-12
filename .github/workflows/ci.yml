@@ -1,11 +1,12 @@
-name: Deploy to Vercel
+name: CI
 
 on:
   push:
     branches: [master]
+  pull_request:
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,6 +34,7 @@ jobs:
         run: trunk build --release
 
       - name: Deploy to Vercel
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
