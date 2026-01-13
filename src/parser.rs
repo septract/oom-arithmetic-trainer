@@ -32,7 +32,7 @@ pub fn parse_answer(input: &str) -> Option<f64> {
     }
 
     // Try plain number
-    input.replace(",", "").replace(" ", "").parse().ok()
+    input.replace([',', ' '], "").parse().ok()
 }
 
 fn parse_scientific(input: &str) -> Option<f64> {
@@ -85,9 +85,8 @@ fn parse_letter_suffix(input: &str) -> Option<f64> {
 fn parse_caret_notation(input: &str) -> Option<f64> {
     // Handle formats like "4 × 10^11", "4 * 10^11", "4x10^11", "4 x 10^11"
     let input = input
-        .replace("×", "x")
-        .replace("*", "x")
-        .replace(" ", "");
+        .replace(['×', '*'], "x")
+        .replace(' ', "");
 
     if !input.contains("x10^") {
         return None;

@@ -3,7 +3,7 @@ use rand_chacha::ChaCha8Rng;
 use std::collections::hash_map::DefaultHasher;
 use std::hash::{Hash, Hasher};
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Copy, Debug)]
 pub struct Challenge {
     pub num1: f64,
     pub num2: f64,
@@ -25,7 +25,7 @@ pub fn get_daily_seed() -> u64 {
     let year = date.get_full_year();
     let month = date.get_month() + 1;
     let day = date.get_date();
-    let date_str = format!("{}-{:02}-{:02}", year, month, day);
+    let date_str = format!("{year}-{month:02}-{day:02}");
 
     let mut hasher = DefaultHasher::new();
     date_str.hash(&mut hasher);
@@ -70,6 +70,6 @@ pub fn format_number(n: f64) -> String {
     } else if abs >= 1e3 {
         format!("{:.1} thousand", n / 1e3)
     } else {
-        format!("{:.1}", n)
+        format!("{n:.1}")
     }
 }

@@ -7,7 +7,7 @@ pub fn oom_distance(user_answer: f64, correct_answer: f64) -> f64 {
     (user_answer.log10() - correct_answer.log10()).abs()
 }
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq)]
 pub enum ScoreResult {
     Exact,      // Within 0.1 OOM
     Close,      // Within 0.5 OOM
@@ -16,21 +16,21 @@ pub enum ScoreResult {
 }
 
 impl ScoreResult {
-    pub fn points(&self) -> u32 {
+    pub fn points(self) -> u32 {
         match self {
-            ScoreResult::Exact => 100,
-            ScoreResult::Close => 75,
-            ScoreResult::Partial => 25,
-            ScoreResult::Wrong => 0,
+            Self::Exact => 100,
+            Self::Close => 75,
+            Self::Partial => 25,
+            Self::Wrong => 0,
         }
     }
 
-    pub fn label(&self) -> &'static str {
+    pub fn label(self) -> &'static str {
         match self {
-            ScoreResult::Exact => "Exact!",
-            ScoreResult::Close => "Close!",
-            ScoreResult::Partial => "Partial",
-            ScoreResult::Wrong => "Off",
+            Self::Exact => "Exact!",
+            Self::Close => "Close!",
+            Self::Partial => "Partial",
+            Self::Wrong => "Off",
         }
     }
 }
@@ -46,21 +46,6 @@ pub fn evaluate(user_answer: f64, correct_answer: f64) -> ScoreResult {
         ScoreResult::Partial
     } else {
         ScoreResult::Wrong
-    }
-}
-
-pub fn format_oom_difference(user_answer: f64, correct_answer: f64) -> String {
-    let distance = oom_distance(user_answer, correct_answer);
-
-    if distance < 0.01 {
-        "Spot on!".to_string()
-    } else {
-        let direction = if user_answer > correct_answer {
-            "high"
-        } else {
-            "low"
-        };
-        format!("{:.1} OOM {}", distance, direction)
     }
 }
 
